@@ -18,6 +18,9 @@ There's a demo in this repo:
 		self.recorder2.waitingForKeysLabel = @"Type something";
 		self.recorder2.snapBackButtonTint = [NSColor purpleColor];
 		self.recorder2.clearButtonTint = [NSColor blueColor];
+		
+		//manually set keyboard shortcut
+		[self.recorder2 setKeyCode:14 andModifierFlags:NSCommandKeyMask|NSShiftKeyMask|NSAlternateKeyMask];
 	}
 
 	- (void) shortcutRecorder:(GWShortcutRecorder *) recorder didClearFlags:(NSEventModifierFlags) flags andKeyCode:(unsigned short) keycode {
