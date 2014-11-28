@@ -7,7 +7,7 @@
 	self.recorder1.delegate = self;
 	self.recorder2.delegate = self;
 	
-	//set some custom labels
+	//set some custom labels and color
 	self.recorder2.defaultLabel = @"Click to record";
 	self.recorder2.waitingForKeysLabel = @"Type something";
 	self.recorder2.snapBackButtonTint = [NSColor purpleColor];
