@@ -43,9 +43,9 @@
 	_mouseDownTintAdjustment = [NSColor colorWithRed:0 green:0 blue:0 alpha:.2];
 	self.defaultAttributes = @{NSFontAttributeName:[NSFont systemFontOfSize:[NSFont systemFontSize]]};
 	self.waitingForKeysAttributes = @{
-									  NSFontAttributeName:[NSFont systemFontOfSize:[NSFont systemFontSize]],
-									  NSForegroundColorAttributeName:[NSColor grayColor]
-									  };
+		NSFontAttributeName:[NSFont systemFontOfSize:[NSFont systemFontSize]],
+		NSForegroundColorAttributeName:[NSColor grayColor]
+	};
 	[self tintSnapBackImage];
 	[self tintClearImage];
 }
@@ -569,6 +569,7 @@
 	NSRect shorterBounds = NSMakeRect(bounds.origin.x,bounds.origin.y,bounds.size.width,bounds.size.height-(1/self.window.backingScaleFactor));
 	NSRect insetRect = NSInsetRect(shorterBounds,(1/self.window.backingScaleFactor),(1/self.window.backingScaleFactor));
 	NSColor * gray = nil;
+	NSColor * white = [NSColor whiteColor];
 	
 	//save context and turn off antialias so lines are 1 px.
 	[[NSGraphicsContext currentContext] saveGraphicsState];
@@ -603,7 +604,6 @@
 	
 	//draw white inner
 	NSBezierPath * insetbg = [NSBezierPath bezierPathWithRoundedRect:insetRect xRadius:4 yRadius:4];
-	NSColor * white = [NSColor whiteColor];
 	[white setFill];
 	[insetbg fill];
 	
