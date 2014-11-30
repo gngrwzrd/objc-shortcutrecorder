@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>5E6E0AD1-7D1E-4643-B83C-2E25AC89C9B1</string>
+	<key>IDESourceControlProjectName</key>
+	<string>GWShortcutRecorder</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>FF51D628BDD8E180F5374B12A3B1A0340C7A0C5F</key>
+		<string>github.com-gngrwzrd:gngrwzrd/objc-shortcutrecorder.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>GWShortcutRecorder/GWShortcutRecorder.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>FF51D628BDD8E180F5374B12A3B1A0340C7A0C5F</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com-gngrwzrd:gngrwzrd/objc-shortcutrecorder.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>FF51D628BDD8E180F5374B12A3B1A0340C7A0C5F</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>FF51D628BDD8E180F5374B12A3B1A0340C7A0C5F</string>
+			<key>IDESourceControlWCCName</key>
+			<string>objc-shortcutrecorder</string>
+		</dict>
+	</array>
+</dict>
+</plist>
