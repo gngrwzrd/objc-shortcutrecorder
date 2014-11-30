@@ -568,25 +568,31 @@
 	NSRect bounds = self.bounds;
 	NSColor * gray = nil;
 	
+	NSRect sbounds = [self.window convertRectFromBacking:bounds];
+	sbounds.size.height -= 1;
+	NSRect convertedSBounds = [self.window convertRectToBacking:sbounds];
+	NSLog(@"sbounds: %f %f %f %f",sbounds.origin.x,sbounds.origin.y,sbounds.size.width,sbounds.size.height);
+	NSLog(@"convertedSbounds: %f %f %f %f",convertedSBounds.origin.x,convertedSBounds.origin.y,convertedSBounds.size.width,convertedSBounds.size.height);
+	
 	//save context and turn off antialias so lines are 1 px.
 	[[NSGraphicsContext currentContext] saveGraphicsState];
 	[[NSGraphicsContext currentContext] setShouldAntialias:NO];
 	
 	//draw very light gray line.
-	NSBezierPath * line = [NSBezierPath bezierPath];
-	gray = [NSColor colorWithDeviceRed:0.905 green:0.905 blue:0.905 alpha:1];
-	[gray setStroke];
-	[line moveToPoint:NSMakePoint(3,bounds.size.height)];
-	[line lineToPoint:NSMakePoint(self.bounds.size.width-3,bounds.size.height)];
-	[line stroke];
+//	NSBezierPath * line = [NSBezierPath bezierPath];
+//	gray = [NSColor colorWithDeviceRed:0.905 green:0.905 blue:0.905 alpha:1];
+//	[gray setStroke];
+//	[line moveToPoint:NSMakePoint(3,bounds.size.height)];
+//	[line lineToPoint:NSMakePoint(self.bounds.size.width-3,bounds.size.height)];
+//	[line stroke];
 	
 	//draw light gray line over.
-	line = [NSBezierPath bezierPath];
-	gray = [NSColor colorWithDeviceRed:0.892 green:0.892 blue:0.892 alpha:1];
-	[gray setStroke];
-	[line moveToPoint:NSMakePoint(4,bounds.size.height)];
-	[line lineToPoint:NSMakePoint(self.bounds.size.width-4,bounds.size.height)];
-	[line stroke];
+//	line = [NSBezierPath bezierPath];
+//	gray = [NSColor colorWithDeviceRed:0.892 green:0.892 blue:0.892 alpha:1];
+//	[gray setStroke];
+//	[line moveToPoint:NSMakePoint(4,bounds.size.height)];
+//	[line lineToPoint:NSMakePoint(self.bounds.size.width-4,bounds.size.height)];
+//	[line stroke];
 	
 	//restore context
 	[[NSGraphicsContext currentContext] restoreGraphicsState];
@@ -610,20 +616,20 @@
 	[[NSGraphicsContext currentContext] setShouldAntialias:NO];
 	
 	//draw slightly darker line over white inner
-	line = [NSBezierPath bezierPath];
-	gray = [NSColor colorWithDeviceRed:0.716 green:0.716 blue:0.716 alpha:1];
-	[gray setStroke];
-	[line moveToPoint:NSMakePoint(3,shorterBounds.size.height)];
-	[line lineToPoint:NSMakePoint(self.bounds.size.width-3,shorterBounds.size.height)];
-	[line stroke];
+//	line = [NSBezierPath bezierPath];
+//	gray = [NSColor colorWithDeviceRed:0.716 green:0.716 blue:0.716 alpha:1];
+//	[gray setStroke];
+//	[line moveToPoint:NSMakePoint(3,shorterBounds.size.height)];
+//	[line lineToPoint:NSMakePoint(self.bounds.size.width-3,shorterBounds.size.height)];
+//	[line stroke];
 	
 	//draw darker line over white inner
-	line = [NSBezierPath bezierPath];
-	gray = [NSColor colorWithDeviceRed:0.674 green:0.674 blue:0.674 alpha:1];
-	[gray setStroke];
-	[line moveToPoint:NSMakePoint(4,shorterBounds.size.height)];
-	[line lineToPoint:NSMakePoint(self.bounds.size.width-4,shorterBounds.size.height)];
-	[line stroke];
+//	line = [NSBezierPath bezierPath];
+//	gray = [NSColor colorWithDeviceRed:0.674 green:0.674 blue:0.674 alpha:1];
+//	[gray setStroke];
+//	[line moveToPoint:NSMakePoint(4,shorterBounds.size.height)];
+//	[line lineToPoint:NSMakePoint(self.bounds.size.width-4,shorterBounds.size.height)];
+//	[line stroke];
 	
 	//restore context
 	[[NSGraphicsContext currentContext] restoreGraphicsState];
