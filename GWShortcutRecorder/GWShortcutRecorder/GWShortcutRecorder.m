@@ -566,7 +566,10 @@
 
 - (void) drawBackground {
 	NSRect bounds = self.bounds;
+	NSRect shorterBounds = NSMakeRect(bounds.origin.x,bounds.origin.y,bounds.size.width,bounds.size.height-(1/self.window.backingScaleFactor));
+	NSRect insetRect = NSInsetRect(shorterBounds,(1/self.window.backingScaleFactor),(1/self.window.backingScaleFactor));
 	NSColor * gray = nil;
+	NSColor * white = [NSColor whiteColor];
 	
 	//save context and turn off antialias so lines are 1 px.
 	[[NSGraphicsContext currentContext] saveGraphicsState];
@@ -576,6 +579,7 @@
 	NSBezierPath * line = [NSBezierPath bezierPath];
 	gray = [NSColor colorWithDeviceRed:0.905 green:0.905 blue:0.905 alpha:1];
 	[gray setStroke];
+	[line setLineWidth:1/self.window.backingScaleFactor];
 	[line moveToPoint:NSMakePoint(3,bounds.size.height)];
 	[line lineToPoint:NSMakePoint(self.bounds.size.width-3,bounds.size.height)];
 	[line stroke];
@@ -584,6 +588,7 @@
 	line = [NSBezierPath bezierPath];
 	gray = [NSColor colorWithDeviceRed:0.892 green:0.892 blue:0.892 alpha:1];
 	[gray setStroke];
+	[line setLineWidth:1/self.window.backingScaleFactor];
 	[line moveToPoint:NSMakePoint(4,bounds.size.height)];
 	[line lineToPoint:NSMakePoint(self.bounds.size.width-4,bounds.size.height)];
 	[line stroke];
@@ -592,16 +597,13 @@
 	[[NSGraphicsContext currentContext] restoreGraphicsState];
 	
 	//draw darker gray border
-	NSRect shorterBounds = NSMakeRect(bounds.origin.x,bounds.origin.y,bounds.size.width,bounds.size.height-1);
 	NSBezierPath * bg = [NSBezierPath bezierPathWithRoundedRect:shorterBounds xRadius:4 yRadius:4];
 	gray = [NSColor colorWithDeviceRed:0.784 green:0.784 blue:0.784 alpha:1];
 	[gray setFill];
 	[bg fill];
 	
 	//draw white inner
-	NSRect insetBounds = NSInsetRect(shorterBounds,1,1);
-	NSBezierPath * insetbg = [NSBezierPath bezierPathWithRoundedRect:insetBounds xRadius:4 yRadius:4];
-	NSColor * white = [NSColor whiteColor];
+	NSBezierPath * insetbg = [NSBezierPath bezierPathWithRoundedRect:insetRect xRadius:4 yRadius:4];
 	[white setFill];
 	[insetbg fill];
 	
@@ -613,14 +615,16 @@
 	line = [NSBezierPath bezierPath];
 	gray = [NSColor colorWithDeviceRed:0.716 green:0.716 blue:0.716 alpha:1];
 	[gray setStroke];
-	[line moveToPoint:NSMakePoint(3,shorterBounds.size.height)];
-	[line lineToPoint:NSMakePoint(self.bounds.size.width-3,shorterBounds.size.height)];
+	[line setLineWidth:1/self.window.backingScaleFactor];
+	[line moveToPoint:NSMakePoint(3*self.window.backingScaleFactor,shorterBounds.size.height)];
+	[line lineToPoint:NSMakePoint(self.bounds.size.width-(3*self.window.backingScaleFactor),shorterBounds.size.height)];
 	[line stroke];
 	
 	//draw darker line over white inner
 	line = [NSBezierPath bezierPath];
 	gray = [NSColor colorWithDeviceRed:0.674 green:0.674 blue:0.674 alpha:1];
 	[gray setStroke];
+	[line setLineWidth:(1/self.window.backingScaleFactor)];
 	[line moveToPoint:NSMakePoint(4,shorterBounds.size.height)];
 	[line lineToPoint:NSMakePoint(self.bounds.size.width-4,shorterBounds.size.height)];
 	[line stroke];
