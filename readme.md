@@ -32,3 +32,6 @@ There's a demo in this repo:
 	}
 
 	@end
+
+![Screenshot](http://gngrwzrd.com/downloads/gwshortcutrecorder.png)
+    
