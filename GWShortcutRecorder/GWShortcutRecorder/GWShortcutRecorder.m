@@ -19,6 +19,19 @@
 
 @implementation GWShortcutRecorder
 
++ (NSString *) stringForRawKeyCode:(unsigned short) keyCode {
+	TISInputSourceRef tisSource = TISCopyCurrentASCIICapableKeyboardInputSource();
+	CFDataRef layoutData = (CFDataRef)TISGetInputSourceProperty(tisSource, kTISPropertyUnicodeKeyLayoutData);
+	CFRelease(tisSource);
+	const UCKeyboardLayout * keyLayout = (const UCKeyboardLayout *)CFDataGetBytePtr(layoutData);
+	static const UniCharCount MaxLength = 255;
+	UniCharCount actualLength = 0;
+	UniChar chars[MaxLength] = {0};
+	UInt32 deadKeyState = 0;
+	__unused OSStatus err = UCKeyTranslate(keyLayout,keyCode,kUCKeyActionDisplay,0,LMGetKbdType(),kUCKeyTranslateNoDeadKeysBit,&deadKeyState,sizeof(chars)/sizeof(UniChar),&actualLength,chars);
+	return [[NSString stringWithCharacters:chars length:actualLength] uppercaseString];
+}
+
 - (id) initWithCoder:(NSCoder *) coder {
 	self = [super initWithCoder:coder];
 	[self defaultInit];
@@ -200,19 +213,6 @@
 	self.mutableLabel = [[NSMutableString alloc] initWithString:@""];
 }
 
-- (NSString *) trasformRawKeyCode:(unsigned short) keyCode {
-	TISInputSourceRef tisSource = TISCopyCurrentASCIICapableKeyboardInputSource();
-	CFDataRef layoutData = (CFDataRef)TISGetInputSourceProperty(tisSource, kTISPropertyUnicodeKeyLayoutData);
-	CFRelease(tisSource);
-	const UCKeyboardLayout * keyLayout = (const UCKeyboardLayout *)CFDataGetBytePtr(layoutData);
-	static const UniCharCount MaxLength = 255;
-	UniCharCount actualLength = 0;
-	UniChar chars[MaxLength] = {0};
-	UInt32 deadKeyState = 0;
-	__unused OSStatus err = UCKeyTranslate(keyLayout,keyCode,kUCKeyActionDisplay,0,LMGetKbdType(),kUCKeyTranslateNoDeadKeysBit,&deadKeyState,sizeof(chars)/sizeof(UniChar),&actualLength,chars);
-	return [[NSString stringWithCharacters:chars length:actualLength] uppercaseString];
-}
-
 - (NSString *) stringFromKeyCode:(unsigned short) keyCode andModifierFlags:(NSEventModifierFlags) modifierFlags {
 	NSMutableString * stringValue = [[NSMutableString alloc] init];
 	
@@ -347,7 +347,7 @@
 			[stringValue appendFormat:@"%C",0x2191];
 			break;
 		default:
-			raw = [self trasformRawKeyCode:keyCode];
+			raw = [GWShortcutRecorder stringForRawKeyCode:keyCode];
 			[stringValue appendString:raw];
 			break;
 	}

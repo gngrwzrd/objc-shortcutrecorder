@@ -24,6 +24,9 @@
 @property (nonatomic) NSColor * clearButtonTint;
 @property (nonatomic) NSColor * mouseDownTintAdjustment;
 
+//get a string like "W" for a keyCode.
++ (NSString *) stringForRawKeyCode:(unsigned short) keyCode;
+
 //set the keyCode and modifierFlags.
 - (void) setKeyCode:(NSInteger) keyCode andModifierFlags:(NSEventModifierFlags) modifierFlags;
 
