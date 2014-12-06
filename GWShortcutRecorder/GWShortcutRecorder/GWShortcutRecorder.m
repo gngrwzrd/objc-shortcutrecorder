@@ -389,6 +389,10 @@
 }
 
 - (BOOL) performKeyEquivalent:(NSEvent *) theEvent {
+	if(self.window.firstResponder != self) {
+		return FALSE;
+	}
+	
 	if(!self.isRecording && theEvent.keyCode == 51) { //delete
 		self.isRecording = FALSE;
 		[self clearKeyboardShortcut];
