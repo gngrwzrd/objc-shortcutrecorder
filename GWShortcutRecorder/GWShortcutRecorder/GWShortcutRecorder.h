@@ -30,4 +30,7 @@
 //set the keyCode and modifierFlags.
 - (void) setKeyCode:(NSInteger) keyCode andModifierFlags:(NSEventModifierFlags) modifierFlags;
 
+//resets and clears keycode and modifier flags.
+- (void) clear;
+
 @end

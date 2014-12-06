@@ -111,6 +111,16 @@
 	}
 }
 
+- (void) clear; {
+	self.modifierFlags = 0;
+	self.previousModifierFlags = 0;
+	self.keyCode = -1;
+	self.previousKeyCode = -1;
+	self.mutableLabel = [NSMutableString stringWithString:@""];
+	self.previousMutableLabel = [NSMutableString stringWithString:@""];
+	[self setNeedsDisplay:TRUE];
+}
+
 - (void) setDefaultLabel:(NSString *) defaultLabel {
 	_defaultLabel = defaultLabel;
 	[self setNeedsDisplay:TRUE];
@@ -178,14 +188,14 @@
 	self.previousMutableLabel = self.mutableLabel;
 	self.modifierFlags = 0;
 	self.keyCode = -1;
-	self.mutableLabel = [[NSMutableString alloc] initWithString:@""];
+	self.mutableLabel = [NSMutableString string];
 }
 
 - (void) popKeyboardShortcut {
 	if(self.previousModifierFlags == 0 && self.previousKeyCode == -1) {
 		self.modifierFlags = 0;
 		self.keyCode = -1;
-		self.mutableLabel = [[NSMutableString alloc] initWithString:@""];
+		self.mutableLabel = [NSMutableString string];
 	} else {
 		self.modifierFlags = self.previousModifierFlags;
 		self.keyCode = self.previousKeyCode;
@@ -197,7 +207,7 @@
 		
 		self.previousModifierFlags = 0;
 		self.previousKeyCode = -1;
-		self.previousMutableLabel = [[NSMutableString alloc] initWithString:@""];
+		self.previousMutableLabel = [NSMutableString string];
 	}
 }
 
@@ -210,7 +220,7 @@
 	self.previousMutableLabel = nil;
 	self.modifierFlags = 0;
 	self.keyCode = -1;
-	self.mutableLabel = [[NSMutableString alloc] initWithString:@""];
+	self.mutableLabel = [NSMutableString string];
 }
 
 - (NSString *) stringFromKeyCode:(unsigned short) keyCode andModifierFlags:(NSEventModifierFlags) modifierFlags {
@@ -361,7 +371,7 @@
 	}
 	
 	NSEventModifierFlags flags = 0;
-	self.mutableLabel = [[NSMutableString alloc] initWithString:@""];
+	self.mutableLabel = [NSMutableString string];
 	
 	if(theEvent.modifierFlags & NSControlKeyMask) {
 		flags |= NSControlKeyMask;
@@ -581,21 +591,21 @@
 	
 	//draw very light gray line.
 	NSBezierPath * line = [NSBezierPath bezierPath];
-	gray = [NSColor colorWithDeviceRed:0.905 green:0.905 blue:0.905 alpha:1];
-	[gray setStroke];
-	[line setLineWidth:1/self.window.backingScaleFactor];
-	[line moveToPoint:NSMakePoint(3,bounds.size.height)];
-	[line lineToPoint:NSMakePoint(self.bounds.size.width-3,bounds.size.height)];
-	[line stroke];
-	
-	//draw light gray line over.
-	line = [NSBezierPath bezierPath];
-	gray = [NSColor colorWithDeviceRed:0.892 green:0.892 blue:0.892 alpha:1];
-	[gray setStroke];
-	[line setLineWidth:1/self.window.backingScaleFactor];
-	[line moveToPoint:NSMakePoint(4,bounds.size.height)];
-	[line lineToPoint:NSMakePoint(self.bounds.size.width-4,bounds.size.height)];
-	[line stroke];
+//	gray = [NSColor colorWithDeviceRed:0.905 green:0.905 blue:0.905 alpha:1];
+//	[gray setStroke];
+//	[line setLineWidth:1/self.window.backingScaleFactor];
+//	[line moveToPoint:NSMakePoint(3,bounds.size.height)];
+//	[line lineToPoint:NSMakePoint(self.bounds.size.width-3,bounds.size.height)];
+//	[line stroke];
+//	
+//	//draw light gray line over.
+//	line = [NSBezierPath bezierPath];
+//	gray = [NSColor colorWithRed:0 green:0 blue:0 alpha:0]; //[NSColor colorWithDeviceRed:0.892 green:0.892 blue:0.892 alpha:1];
+//	[gray setStroke];
+//	[line setLineWidth:1/self.window.backingScaleFactor];
+//	[line moveToPoint:NSMakePoint(4,bounds.size.height)];
+//	[line lineToPoint:NSMakePoint(self.bounds.size.width-4,bounds.size.height)];
+//	[line stroke];
 	
 	//restore context
 	[[NSGraphicsContext currentContext] restoreGraphicsState];
