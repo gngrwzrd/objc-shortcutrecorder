@@ -24,6 +24,9 @@
 @property (nonatomic) NSColor * clearButtonTint;
 @property (nonatomic) NSColor * mouseDownTintAdjustment;
 
+// Whether the tab key can be a part of the shortcut, or has its standard behaviour of moving focus from the field. Default = YES.
+@property (nonatomic) BOOL captureTabKey;
+
 //get a string like "W" for a keyCode.
 + (NSString *) stringForRawKeyCode:(unsigned short) keyCode;
 
