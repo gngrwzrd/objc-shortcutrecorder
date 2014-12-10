@@ -51,7 +51,7 @@
 	self.previousKeyCode = -1;
 	self.defaultLabel = @"Click to record shortcut";
 	self.waitingForKeysLabel = @"Type shortcut";
-        self.captureTabKey = YES;
+	self.captureTabKey = YES;
 	_snapBackButtonTint = [NSColor orangeColor];
 	_clearButtonTint = [NSColor colorWithRed:.5 green:.5 blue:.5 alpha:1];
 	_mouseDownTintAdjustment = [NSColor colorWithRed:0 green:0 blue:0 alpha:.2];
@@ -425,14 +425,14 @@
 		return TRUE;
 	}
 	
-        if (!self.captureTabKey) {
-                	if(self.isRecording && theEvent.keyCode == 48) { //tab
-                		self.isRecording = FALSE;
-                		[self popKeyboardShortcut];
-                		[self setNeedsDisplay:TRUE];
-                		return TRUE;
-                	}
-        }
+	if(!self.captureTabKey) {
+		if(self.isRecording && theEvent.keyCode == 48) { //tab
+			self.isRecording = FALSE;
+            [self popKeyboardShortcut];
+            [self setNeedsDisplay:TRUE];
+            return TRUE;
+		}
+	}
 	
 	if(self.isRecording) {
 		if(self.modifierFlags < 1) {

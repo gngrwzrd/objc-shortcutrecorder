@@ -6,7 +6,7 @@
 - (void) applicationDidFinishLaunching:(NSNotification *) aNotification {
 	self.recorder1.delegate = self;
 	self.recorder2.delegate = self;
-        self.recorder2.captureTabKey = NO;
+	self.recorder2.captureTabKey = NO;
 	
 	//set some custom labels and color
 	self.recorder2.defaultLabel = @"Click to record";
