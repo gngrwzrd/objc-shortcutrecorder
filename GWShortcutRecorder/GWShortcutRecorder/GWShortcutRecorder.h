@@ -12,6 +12,8 @@
 
 @interface GWShortcutRecorder : NSView
 @property (weak) NSObject <GWShortcutRecorderDelegate> * delegate;
+
+//the current keycode and modifier flags
 @property (readonly) NSEventModifierFlags modifierFlags;
 @property (readonly) NSInteger keyCode;
 
@@ -26,6 +28,9 @@
 
 //whether the tab key can be a part of the shortcut, or has its standard behaviour of moving focus from the field. Default = YES.
 @property (nonatomic) BOOL captureTabKey;
+
+//whether or not a single key can be captured without modifier flags.
+@property (nonatomic) BOOL requiresModifierFlags;
 
 //get a string like "W" for a keyCode.
 + (NSString *) stringForRawKeyCode:(unsigned short) keyCode;
